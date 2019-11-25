@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <header></header>
+    <section></section>
+    <script>
+
+        class Chapitres {
+            constructor(titre, texte, target) {
+                this.titre = titre
+                this.texte = texte
+                this.target = target
+                this.append()
+            }
+            append() {
+                let article = document.createElement('article')
+                let titre = document.createElement('h2')
+
+                article.textContent = this.texte
+                titre.textContent = this.titre
+
+                this.target.appendChild(titre)
+                this.target.appendChild(article)
+            }
+        }
+        let section = document.querySelector('section')
+
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            console.log(request.status)
+            if (request.readyState === 4) {
+                let response = JSON.parse(this.response) // Si non stockées dans une variable this.response.chapitre est undefined
+                let titreLivre = document.createElement('h1')
+                titreLivre.textContent = response.Livre
+                section.appendChild(titreLivre)
+
+                for (let i = 0; i < response.chapitre.length; i++) {
+
+                    let article = new Chapitres(response.chapitre[i].titre, response.chapitre[i].content, section)
+
+                    // console.log(article)
+                }
+            }
+        }
+        request.open('GET', "chapitre.json", true);
+        request.send()
+        
+
+
+
+
+    </script>
+</body>
+
+</html>
