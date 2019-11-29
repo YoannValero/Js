@@ -14,7 +14,7 @@
     }
 
     body {
-        background-image: url('Fromagess.jpg');
+        background-image: url('modele/Fromagess.jpg');
         background-repeat: no-repeat;
         background-size: contain;
     }
@@ -59,7 +59,7 @@
             etoile() {
                 for (let i = 0; i < this.classement; i++) {
                     let stars = document.createElement('img')
-                    stars.src = 'etoile.png'
+                    stars.src = 'modele/etoile.png'
                     this.classementElt.appendChild(stars)
                     stars.style.width = '2vw'
                 }
@@ -82,7 +82,7 @@
                 }
             }
         }
-        request.open('GET', "fromages.json", true);
+        request.open('GET', "modele/fromages.json", true);
         request.send()
 
     </script>
