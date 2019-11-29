@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        width: 110px;
+        height: 110px;
+        position:absolute;
+        left:500px;
+        border: 2px solid black;   
+    }
+
+    #circle {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+</style>
+
+<body>
+    <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    
+    <!-- <p id='circle' id="drag1" draggable="true" ondragstart="drag(event)">fdsfsd</p> -->
+    <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+</div>
+
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.ap
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<style>
+    div {
+	position: absolute;
+	top: 200px;
+	left: 500px;
+	cursor: pointer;
+	width: 90px;
+}
+
+#ball {
+	cursor: pointer;
+	width: 50px;
+    height: 50px;
+    background-color:red;
+}
+</style>
+<body>
+	<p>Drag the ball.</p>
+	<div ondrop="dropHandler(event)" ondragover="dragoverHandler(event)" id="gate1">
+		<img src="https://en.js.cx/clipart/soccer-gate.svg">
+	</div>
+
+	<p id="ball" draggable="true" ondragstart="dragstartHandler(event)"> LALALALALA </p>
+
+	<script>
+		function dragstartHandler(ev) {
+			ev.dataTransfer.setData("text/plain", ev.target.id);
+		}
+		function dragoverHandler(ev) {
+			ev.preventDefault();
+			ev.target.style.background = "blue";
+		}
+		function dropHandler(ev) {
+			ev.preventDefault();
+			const data = ev.dataTransfer.getData("text");
+			const ball = document.getElementById(data);
+			ball.style.top = '0px';
+			ball.style.left = '15px';
+			ball.style.position = 'absolute';
+			ev.target.parentNode.appendChild(ball);
+		}
+	</script>
+</body>
+</html> -->

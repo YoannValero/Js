@@ -43,20 +43,13 @@
                 section.appendChild(titreLivre)
 
                 for (let i = 0; i < response.chapitre.length; i++) {
-
                     let article = new Chapitres(response.chapitre[i].titre, response.chapitre[i].content, section)
-
-                    // console.log(article)
                 }
             }
         }
         request.open('GET', "chapitre.json", true);
         request.send()
         
-
-
-
-
     </script>
 </body>
 
