@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Horloge</title>
+</head>
+<style>
+    body {
+        display:flex;
+        flex:1;
+        min-height: 100vh;
+        align-items:center;    
+    }
+    #cadran {
+        width:30rem;
+        height:30rem;
+        border:20px solid black;
+        border-radius: 50%;
+        margin:50px auto;
+        position: relative;
+        padding:2rem;
+    }
+    .clock-face {
+        position:relative;
+        width:100%;
+        height:100%;
+        transform:translateY(-3px);
+    }
+    .hand {
+        width:50%;
+        height: 6px;
+        background:blue;
+        position:absolute;
+        font-size:2rem;
+        top:50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+        transition: all 0.005s;
+        transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+    }
+    .num {
+        position: absolute;
+        font-size:5rem;
+    }
+    .clock-face :nth-child(4) {  
+        left:40%;
+    }
+    .clock-face :nth-child(5) {
+        top:40%;
+    }
+    .clock-face :nth-child(6) {
+        top:40%;
+        right:0;
+    }
+    .clock-face :last-child {
+        bottom:0;
+        left:45%;       
+    }
+</style>
+<body>
+    <div id='cadran'>
+        <div class='clock-face'>
+            <div class='hand hour-hand'>Hours</div>
+            <div class='hand min-hand'>Minutes</div>
+            <div class='hand second-hand'>Seconds</div>
+            <div class='num'>12</div>
+            <div class='num'>9</div>
+            <div class='num'>6</div>
+            <div class='num'>3</div>
+        </div>
+    </div>
+          
+    <script>
+        console.log(document.querySelector('.clock-face :nth-child(7)'))
+        const secondHTML = document.querySelector('.second-hand')
+        const minHTML = document.querySelector('.min-hand')
+        const hourHTML = document.querySelector('.hour-hand')
+
+        secondHTML.style.background = 'red'
+        minHTML.style.background ='darkblue'
+        hourHTML.style.background ='black'
+       
+        
+
+
+        function setDate() {
+            const now = new Date(); // objet Date déjà créer par JS
+            
+            const seconds = now.getSeconds();
+            const secDeg = ((seconds/60)*360)+90;
+            secondHTML.style.transform = `rotate(${secDeg}deg)`
+
+            const mins = now.getMinutes();
+            const minDeg = ((mins/60)*360) + ((seconds/60)*6)+ 90;
+            minHTML.style.transform = `rotate(${minDeg}deg)`;
+
+            const hour = now.getHours();
+            const hourDeg = ((hour/12)*360) + ((mins/60)*30)+ 90;
+            hourHTML.style.transform = `rotate(${hourDeg}deg)`
+        }
+        setInterval(setDate,1000)
+
+
+
+    </script>
+</body>
+</html>
