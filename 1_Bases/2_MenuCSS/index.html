@@ -41,39 +41,23 @@
     </nav>
     <script>
 
-
-        
-        let x = document.querySelectorAll("nav > ul > li")
+        let x = document.querySelectorAll("nav > ul > li ")
         console.log(x)
-            for(item of x){
-                item.addEventListener("mouseover", function(){
- 
-                 let y  = item.children[1]
-                 console.log(y)
-                 if(y.style.visibility === "visible"){
-                     y.style.visibility = "hidden"
-                     y.style.opacity = 0
-                 }else{
+        for (let item of x) {
+            item.addEventListener("click", function () {
+
+                let y = item.children[1]
+               
+                if (y.style.visibility === "visible") {
+                    y.style.visibility = "hidden"
+                    y.style.opacity = 0
+                } else {
                     y.style.visibility = "visible"
                     y.style.opacity = 1;
-                 }
-                 
-                })
-            }
-
-        var ahref = document.querySelectorAll('nav ul li a') // Sélection de tous les <a>
-        // console.log(ahref)
-        var listDown = document.querySelectorAll('nav li ul') // Sélection de toutes les <ul> dropdown
-        // console.log(listDown[0])
-        for (let i=0; i <listDown.length;i++) {
-            console.log(listDown.length)
-            ahref.onmouseover = function(){
-                listDown.style.visibility = 'visible'
-            }
+                }
+            })
+        console.log(item.children[1]) 
         }
-            
-       
-
 
     </script>
 </body>
