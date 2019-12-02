@@ -8,42 +8,112 @@
     <title>Document</title>
 </head>
 <style>
-    div {
-        width: 110px;
-        height: 110px;
-        position:absolute;
-        left:500px;
-        border: 2px solid black;   
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
-    #circle {
-        width: 100px;
-        height: 100px;
-        background-color: red;
+    .dropper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom:200px;
+        width: 210px;
+        height: 210px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        border: 4px solid rgb(0, 0, 0);
+        transition: all 200ms linear; /* transition pour le box-shadow de l'hover */
+    }
+
+    .drop_hover {
+        box-shadow: 0 0 100px rgb(255, 0, 0);
+    }
+
+    .draggable {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #822520;
+        cursor: move;
+        user-select: none;
     }
 </style>
 
 <body>
-    <div ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    
-    <!-- <p id='circle' id="drag1" draggable="true" ondragstart="drag(event)">fdsfsd</p> -->
-    <img src="img_w3slogo.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
-</div>
+    <div class='container'>
+        <div class="dropper"></div>
+        <div class="draggable"></div>
+    </div>
 
     <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
 
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
+        (function() {
 
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            ev.target.ap
-        }
+            let dndHandler = {
+
+                draggedElement: null, // Propriété pointant vers l'élément en cours de déplacement
+
+                applyDragEvents: function (element) {
+
+                    element.draggable = true;
+                    console.log(element)
+                    let dndHandler = this; // Cette variable est nécessaire pour que l'événement "dragstart" ci-dessous accède facilement au namespace "dndHandler"
+
+                    element.addEventListener('dragstart', function (e) {
+                        dndHandler.draggedElement = e.target; // On sauvegarde l'élément en cours de déplacement
+                        e.dataTransfer.setData('text/plain', ''); // Nécessaire pour Firefox
+                    }, false);
+
+                },
+
+                applyDropEvents: function(dropper) {
+
+                    dropper.addEventListener('dragover', function (e) {
+                        e.preventDefault(); // On autorise le drop d'éléments
+                        this.className = 'dropper drop_hover'; // Et on applique le design adéquat à notre zone de drop quand un élément la survole
+                    }, false);
+
+                    dropper.addEventListener('dragleave', function () {
+                        this.className = 'dropper'; // On revient au design de base lorsque l'élément quitte la zone de drop
+                    });
+
+                    let dndHandler = this; // Cette letiable est nécessaire pour que l'événement "drop" ci-dessous accède facilement au namespace "dndHandler"
+
+                    dropper.addEventListener('drop', function(e) {
+
+                        let target = e.target,
+                            draggedElement = dndHandler.draggedElement, // Récupération de l'élément concerné
+                            clonedElement = draggedElement.cloneNode(true); // On créé immédiatement le clone de cet élément
+
+                        target.className = 'dropper'; // Application du design par défaut
+
+                        clonedElement = target.appendChild(clonedElement); // Ajout de l'élément cloné à la zone de drop actuelle
+                        dndHandler.applyDragEvents(clonedElement); // Nouvelle application des événements qui ont été perdus lors du cloneNode()
+
+                        draggedElement.parentNode.removeChild(draggedElement); // Suppression de l'élément d'origine
+                    });
+                }
+            };
+
+            let elements = document.querySelectorAll('.draggable'),
+                elementsLen = elements.length;
+
+            for (let i = 0; i < elementsLen; i++) {
+                dndHandler.applyDragEvents(elements[i]); // Application des paramètres nécessaires aux élément déplaçables
+            }
+
+            let droppers = document.querySelectorAll('.dropper'),
+                droppersLen = droppers.length;
+
+            for (let i = 0; i < droppersLen; i++) {
+                dndHandler.applyDropEvents(droppers[i]); // Application des événements nécessaires aux zones de drop
+            }
+            
+        })();
+
     </script>
 </body>
 
