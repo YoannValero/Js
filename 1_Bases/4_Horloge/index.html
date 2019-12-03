@@ -50,11 +50,11 @@
     .clock-face :nth-child(5) {
         top:40%;
     }
-    .clock-face :nth-child(6) {
+    .clock-face :last-child {
         top:40%;
         right:0;
     }
-    .clock-face :last-child {
+    .clock-face :nth-child(6) {
         bottom:0;
         left:45%;       
     }
@@ -82,9 +82,6 @@
         minHTML.style.background ='darkblue'
         hourHTML.style.background ='black'
        
-        
-
-
         function setDate() {
             const now = new Date(); // objet Date déjà créer par JS
             
