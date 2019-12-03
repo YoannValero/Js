@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dessiner Canvas</title>
+</head>
+<style>
+    canvas {
+        width: 600px;
+        height: 600px;
+        border: 2px solid black;
+    }
+</style>
+
+<body>
+    <canvas id='monCanvas'>
+    </canvas>
+    <!-- <img id='abricot' src='./images/abricot.png'> --> <!-- Pour insérer une images déjà présente sur le DOM dans canvas--> 
+    <script>    
+        let canvas = document.getElementById('monCanvas');
+        let ctx = canvas.getContext('2d');
+        // Insérer une image dans le canvas qui est présent sur le DOM cependant nécessité de cacher dans le DOM
+
+        // let image = document.getElementById('abricot');
+        // image.addEventListener('load', function () {
+        //     ctx.drawImage(image, 50, 10, 150, 75);
+        // }, false);
+
+        let img = new Image();
+        img.src='./images/abricot.png';
+        img.addEventListener('load', function() {
+            ctx.drawImage(img,50,50,150,75); // Si vous essayez d'appeler drawImage () avant le chargement de l'image, il ne fera rien (ou, dans les anciens navigateurs, cela peut même déclencher une exception). Vous devez donc être sûr d'utiliser l'événement load pour ne pas essayer avant que l'image ne soit chargée :
+        },false);
+        
+    </script>
+</body>
+
+</html>
