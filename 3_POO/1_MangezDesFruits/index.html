@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id='myCanvas'></canvas>
+
+    <script>
+        let canvas = document.querySelector("#myCanvas");
+        let ctx = canvas.getContext("2d");
+        canvas.style.border = '2px solid black'
+        canvas.width = 600
+        canvas.height = 500
+        let deltaX = 0;
+        let deltaY = 0;
+
+        function move() { 
+            let img = new Image(); 
+            img.src = '/Js/3_POO/1_MangezDesFruits/images/abricot.png';
+            img.addEventListener('load', function () {
+                ctx.drawImage(img, deltaX, deltaY, 100, 75);
+                console.log(deltaX)
+                console.log(deltaY)
+            })
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+        }
+        move();
+
+        window.addEventListener("keydown", keysPressed, false); // event lorsqu'on appuie sur une touche
+        window.addEventListener("keyup", keysReleased, false); // event lorsqu'on relâche une touche
+
+        let keys = [];
+
+        function keysPressed(e) {
+            // store an entry for every key pressed
+            keys[e.keyCode] = true;
+
+            // gauche
+            if (keys[37]) {
+                deltaX -= 5;
+            }
+            // droite
+            if (keys[39]) {
+                deltaX += 5;
+            }
+            // bas
+            if (keys[38]) {
+                deltaY -= 5;
+            }
+            // haut
+            if (keys[40]) {
+                deltaY += 5;
+            }
+            e.preventDefault();
+            move(); // j'exécute la function move à chaque fois qu'une touché est préssé
+        }
+
+        function keysReleased(e) {
+            // mark keys that were released
+            keys[e.keyCode] = false;
+        }
+ 
+    </script>
+</body>
+
+</html>
