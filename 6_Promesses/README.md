@@ -1,0 +1,2 @@
+# C'est promis j't'assure  
+Les promesses (Promise) sont un système de gestion d'événements asynchrones. Il y a quelques informations sur leur utilisation par [ici]"https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Utiliser_les_promesses"

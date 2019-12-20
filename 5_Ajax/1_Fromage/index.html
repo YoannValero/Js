@@ -16,14 +16,16 @@
     body {
         background-image: url('modele/Fromagess.jpg');
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
     }
 </style>
 
 <body>
     <section></section>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
     <script>
         class Fromages {
+        
             constructor(nom, type, pays, classement, target) { // (nom,type.... == paramètres)
                 this.nom = nom
                 this.type = type
@@ -34,13 +36,13 @@
                 this.append()  // la méthode est exécutée directement quand elle est dans le contructeur lorqu'on instancie un nouvel objet Fromages 
                 // dans le constructeur toujours rappeler this. la méthode
             }
+            
             append() { // méthode .....() car JS OBJET pas de mot clé function
                 let article = document.createElement('article')
                 article.style.border = '2px solid black'
-                article.style.width = '36vw'
-                article.style.marginTop = '2.5vh'
+                article.style.width = '28vw'
+                article.style.marginTop = '3vh'
                 article.style.padding = '2px'
-
 
                 let nom = document.createElement('h2')
                 this.classementElt = document.createElement('p')
@@ -48,42 +50,59 @@
                 let paysElt = document.createElement('p')
 
                 nom.textContent = this.nom
-                // this.classementElt.textContent = this.classement
                 paysElt.textContent = ` Fromage : ${this.type} / Pays :${this.pays}`
 
                 article.appendChild(nom)
                 article.appendChild(this.classementElt)
+                
                 article.appendChild(paysElt)
                 this.target.appendChild(article)
             }
+
             etoile() {
                 for (let i = 0; i < this.classement; i++) {
+                    
                     let stars = document.createElement('img')
                     stars.src = 'modele/etoile.png'
                     this.classementElt.appendChild(stars)
                     stars.style.width = '2vw'
-                }
+                }   
             }
         }
+
         let section = document.querySelector('section')
         section.style.float = 'right'
         section.style.height = '100vh'
 
         let request = new XMLHttpRequest();
         request.onreadystatechange = function () {
-            console.log(request.status)
+            // console.log(request.status)
             if (request.readyState === 4) {
                 let response = JSON.parse(this.response) // Si non stockées dans une variable this.response.chapitre est undefined
 
                 for (let i = 0; i < response.length; i++) {
                     let article = new Fromages(response[i].nom, response[i].type, response[i].pays, response[i].classement, section) // (response[i].type = arguments du contructeur de la class Fromages )
-                    console.log(article.classementElt)
+                    // console.log(article.classementElt)
                     // article.append() Si ya pas de this.append() dans le constructeur, il faut appeler la méthode comme ceci
                 }
             }
         }
         request.open('GET', "modele/fromages.json", true);
         request.send()
+
+
+
+        // // REQUETE AJAX EN JQUERY
+        // $(document).ready(function () {
+        //     $.get('./modele/fromages.json', function(data){
+        //         $.each(data, function (index,value){
+        //             $('section').append(`<article><h2>${value.nom}</h2>
+        //                                           <p> Fromages : ${value.type} / Pays : ${value.pays}</p>
+        //                                  </article>`)
+        //             console.log(value.nom)
+        //         })          
+        //     })
+        // });
 
     </script>
 </body>

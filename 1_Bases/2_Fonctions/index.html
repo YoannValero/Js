@@ -7,25 +7,67 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+    body {
+        background-color: #222;
+        color: white;
+    }
+
+    article {
+        text-align: justify;
+    }
+</style>
 
 <body>
+    <button id='bouton'>Faire ma requête AJAX</button>
     <header></header>
     <section></section>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
     <script>
+        // requete AJAX JS procédurale 
+        // let response = new XMLHttpRequest();
 
+        // response.open('GET', 'chapitre2.json')
+        // response.responseType ='json';
+
+        // response.addEventListener('load', function(){
+        //     let chapitreJSON = this.response 
+        //     console.log(chapitreJSON);
+        //     chapitreJSON.forEach(element => {
+        //         chapitre(element);
+        //     })
+        // })
+        // response.send()
+
+        // function chapitre(chap) {
+        //     let article = document.createElement('article')
+        //     let monTitre = document.createElement('h1')
+        //     let monParagraphe =document.createElement('p')
+        //     monTitre.innerText = chap.titre;
+        //     console.log(chap.titre);
+            
+        //     monParagraphe.innerText = chap.texte;
+        //     article.appendChild(monTitre);
+        //     article.appendChild(monParagraphe)
+        //     document.body.appendChild(article)
+        // }
+        
+        // Requête AJAX POO
         class Chapitres {
             constructor(titre, texte, target) {
                 this.titre = titre
                 this.texte = texte
                 this.target = target
-                this.append()
+                this.appendChap()
             }
-            append() {
+            appendChap() {
                 let article = document.createElement('article')
                 let titre = document.createElement('h2')
 
                 article.textContent = this.texte
                 titre.textContent = this.titre
+                titre.style.textAlign ='center'
+                titre.style.fontStyle ='italic'
 
                 this.target.appendChild(titre)
                 this.target.appendChild(article)
@@ -33,15 +75,27 @@
         }
         let section = document.querySelector('section')
 
+        let bouton = document.getElementById('bouton')
+        bouton.addEventListener('click', () => {
+            afficherChap();
+        })
+
+        function afficherChap() {
         let request = new XMLHttpRequest();
+
+        // request.addEventListener('load', function(){
+            
+        
         request.onreadystatechange = function () {
             console.log(request.status)
             if (request.readyState === 4) {
                 let response = JSON.parse(this.response) // Si non stockées dans une variable this.response.chapitre est undefined
                 let titreLivre = document.createElement('h1')
                 titreLivre.textContent = response.Livre
+                titreLivre.style.fontSize = '2em'
+                titreLivre.style.textAlign = 'center'
                 section.appendChild(titreLivre)
-
+                
                 for (let i = 0; i < response.chapitre.length; i++) {
                     let article = new Chapitres(response.chapitre[i].titre, response.chapitre[i].content, section)
                 }
@@ -49,8 +103,23 @@
         }
         request.open('GET', "chapitre.json", true);
         request.send()
-        
+    }
+
+        // Requete AJAX en JQUERY
+
+        // $(document).ready(function () {
+        //     $.get('chapitre.json', function (data) {
+        //         $('section').append(`<h1> ${data.Livre} </h1>`)
+        //         $.each(data.chapitre, function (index, value) {
+        //             $('section').append(`<article><h2>${value.titre}</h2>
+        //                                           <p> ${value.content}</p>`)
+        //         })
+        //     });
+        // });
+
     </script>
+
+
 </body>
 
 </html>
