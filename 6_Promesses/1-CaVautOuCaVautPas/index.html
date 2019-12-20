@@ -11,7 +11,7 @@
 <body>
     <script>
         let i = 0;
-        let eachPromise = setInterval(function () { // setInterval() pour éxécuter la fonction toutes les secondes
+        let eachPromise = setInterval(function () { // setInterval() pour éxécuter la fonction toutes les 0.4secondes placé en param à la fin
             const demarre = new Promise((resolve, reject) => { // je déclare une promesse avec param resolve qui correspond à la réussite de la promesse et 
                 if (i < 10) {   // condition                   //  qui sera exécuté après le then et reject en cas d'erreur et l'éxécution interviendra au moment du catch
                     resolve('What a success');
@@ -25,8 +25,8 @@
             }).catch((err) => { // Catch((err)) contient le message d'erreur de reject
                 console.log(err);
                 clearInterval(eachPromise); // je clear l'interval pour le stop quand il arrive au catch cad à l'echec de la promesse 
-            });
-        }, 400);
+            }); 
+        }, 400); // ms de setInterval()
     </script>
 
 </body>
