@@ -10,12 +10,26 @@
   * Horloge
   * Dessiner image canvas
   * Hanoï
-  
-[2. 2_Algorithmes](/2_Algorithmes)  
+
+[2. 2_Algorithmes](/2_Algorithmes)
+* Calculatrice
+* exercices algorithmie
+* nombre mystère
+
 [3. 3_POO](/3_POO)  
-[4. 4_Jquery/Ciblage](/4_Jquery/Ciblage)  
+* Bouger fruit dans canvas
+* GnomNome 
+
+[4. 4_Jquery/Ciblage](/4_Jquery/Ciblage)
+* Ciblage Jquery
+
 [5. 5_Ajax](/5_Ajax)  
+* Fromage JSON
+* Jquey AJAX
+
 [6. 6_Promesses](/6_Promesses)  
+* CaVautOuCaVautPas
+* VasYfonce
 
 
 
