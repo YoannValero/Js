@@ -20,7 +20,7 @@
 * Bouger fruit dans canvas (__Done__)
 * GnomNome (A faire)
 
-[4. 4_Jquery/Ciblage](/4_Jquery/Ciblage)
+[4. 4_Jquery/Ciblage](/4_JQuery/Ciblage)
 * Ciblage Jquery (__Done__)
 
 [5. 5_Ajax](/5_Ajax)  
