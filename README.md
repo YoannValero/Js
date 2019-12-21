@@ -2,7 +2,7 @@
 
 [1. 1_Bases](/1_Bases)
   * pour débuter (__Done__)
-  * Manipulation DOM 
+  * Manipulation DOM (Avancement 3/6)
   * Fonctions chapitre JSON (Done version JS / AJAX)
   * Menu CSS (__Done__)
   * Page menu (A faire)
