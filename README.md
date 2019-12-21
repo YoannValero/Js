@@ -1,5 +1,5 @@
 # Exercices JS SIMPLON
 
-* lala
-* lalala
-* lalala
+[##1. 1_Bases](/1_Bases)
+
+ git a
