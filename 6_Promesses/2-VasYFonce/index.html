@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vas y fonce</title>
+</head>
+<body>
+    <script>
+
+    let get = function (url) { // pas de paramètre de success error avec PROMISE, 
+        return new Promise(function (resolve, reject) { // Promise a méthode then et catch
+            let xhr = new XMLHttpRequest()
+    
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        resolve(xhr.responseText) // Pour le premier exemple, besoin de JSON.parse la réponse XHR
+                    } else {
+                        reject(xhr)
+                    }
+                }
+            }
+            xhr.open('GET', url, true)
+            xhr.send()
+        })
+    }
+    // 1ère exemple =====> Ici, utilisation de 2 promesses pour charger les deux fichiers
+
+    // console.log(get('data/promesses.json').then(function (response) {
+    //     console.log(response)
+    // console.log(get(response.url).then(function(response) {
+    //     console.log(response)
+    //     }))
+    // }).catch(function (error){
+    //     console.log(error)
+    // }))
+
+
+    // Ici , utilisation d'une promesse pour charger les deux fichiers 
+
+    let getData = async function () { 
+        let response = await get('data/promesses.json')
+        let promesseData = JSON.parse(response)
+        console.log(promesseData)
+        response = await get(promesseData.url) // url du fichier promesses.json
+        let chap = JSON.parse(response)
+        console.log(chap)
+        return chap
+    }
+    console.log(getData())
+    
+    </script>
+</body>
+</html>
