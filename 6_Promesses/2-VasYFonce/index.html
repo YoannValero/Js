@@ -44,10 +44,9 @@
         let response = await get('data/promesses.json')
         let promesseData = JSON.parse(response)
         console.log(promesseData)
-        response = await get(promesseData.url) // url du fichier promesses.json
-        let chap = JSON.parse(response)
-        console.log(chap)
-        return chap
+        response = await get(promesseData.url) // url qui est dans fichier promesses.json pour aller chercher anatole.json
+        let anatole = JSON.parse(response)
+        console.log(anatole)
     }
     console.log(getData())
     
