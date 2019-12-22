@@ -29,7 +29,7 @@
 
 [6. 6_Promesses](/6_Promesses)  
 * CaVautOuCaVautPas (__Done__)
-* VasYfonce (A faire)
+* VasYfonce (__Done__)
 
 
 
