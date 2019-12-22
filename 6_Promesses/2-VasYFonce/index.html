@@ -8,7 +8,6 @@
 </head>
 <body>
     <script>
-
     let get = function (url) { // pas de paramètre de success error avec PROMISE, 
         return new Promise(function (resolve, reject) { // Promise a méthode then et catch
             let xhr = new XMLHttpRequest()
@@ -37,8 +36,7 @@
     //     console.log(error)
     // }))
 
-
-    // Ici , utilisation d'une promesse pour charger les deux fichiers 
+    // 2ème exemple ====> Ici , utilisation d'une promesse pour charger les deux fichiers 
 
     let getData = async function () { 
         let response = await get('data/promesses.json')
@@ -48,8 +46,8 @@
         let anatole = JSON.parse(response)
         console.log(anatole)
     }
-    console.log(getData())
-    
+    console.log(getData()) // Le console.log n'est pas nécéssaire, c'est juste pour voir qu'il n'y a qu'une seule promesse pour afficher les fichiers
+
     </script>
 </body>
 </html>
