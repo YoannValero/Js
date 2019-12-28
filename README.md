@@ -12,7 +12,7 @@
   * Hanoï (A faire)
 
 [2. 2_Algorithmes](/2_Algorithmes)
-* Calculatrice (A faire)
+* Calculatrice (__Done__)
 * exercices algorithmie (Avancement 12/21)
 * nombre mystère (A faire)
 
