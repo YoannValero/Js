@@ -14,7 +14,7 @@
 [2. 2_Algorithmes](/2_Algorithmes)
 * Calculatrice (__Done__)
 * exercices algorithmie (Avancement 12/21)
-* nombre mystère (A faire)
+* nombre mystère (Avancement 2/4)
 
 [3. 3_POO](/3_POO)  
 * Bouger fruit dans canvas (__Done__)
