@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nombre Mystère</title>
+</head>
+
+<body>
+
+    <script>
+        function partie() {
+            for (nbCoups = 1; nbCoups <= 5; nbCoups++) {
+                var cache = (Math.floor(Math.random() * 10));
+                console.log(`Le nombre choisi par la machine est : ${cache}`);
+                var util = prompt("Trouver le nombre mystère de 0 à 10");
+                console.log(`C'est l'essai numéro ${nbCoups}`)
+
+                if (util > cache) {
+                    alert("Retente ta chance, t'as vu trop gros");
+                } else if (util < cache) {
+                    alert("Retente ta chance, t'as vu trop petit");
+                } else {
+                    alert("ça va t'as gagné");
+                    break;
+                } 
+                if (nbCoups === 5) {
+                    alert("T'as utilisé toutes tes chances, c'est perdu looser ! ");
+                }
+            }
+            function rejouer() {
+                let rejouer = prompt("On rejoue ? 'o' pour rejouer")
+                if (rejouer == 'o') {
+                    partie()
+                }
+                alert("Merci d'avoir joué avec nous, Bonne journée aurevoir")
+            }
+            rejouer()
+        }
+        partie()
+
+
+
+
+    </script>
+
+</body>
+
+</html>
