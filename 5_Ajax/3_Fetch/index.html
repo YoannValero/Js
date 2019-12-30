@@ -35,35 +35,35 @@
             addData(data) {
                 // Ajout nom des familles
                 for (let i = 0; i < data.length; i++) {
-                    let el = document.createElement('div')
+                    let div = document.createElement('div')
                     let nameFamille = document.createElement('h2')
                     nameFamille.textContent = "Family " + data[i].nom
                     this.section.appendChild(nameFamille)
-                    el.style.display ='none'
+                    div.style.display ='none'
                     // toggle JQuery
                     $(nameFamille).click(function () {
-                        $(el).slideToggle(300);
+                        $(div).slideToggle(300);
                     });
 
                     for (let j = 0; j < data[i].gens.length; j++) {
                         // Ajout Nom personnage
                         let name = document.createElement('h3')
                         name.textContent = data[i].gens[j].nom
-                        el.appendChild(name)
-                        this.section.appendChild(el)
+                        div.appendChild(name)
+                        this.section.appendChild(div)
                         // Ajout description personnage
                         let descrip = document.createElement('p')
                         descrip.textContent = data[i].gens[j].description
-                        el.appendChild(descrip)
-                        this.section.appendChild(el)
+                        div.appendChild(descrip)
+                        this.section.appendChild(div)
                         // Ajout image personnage
                         let image = document.createElement('img')
                         image.src = data[i].gens[j].image
-                        el.appendChild(image)
-                        this.section.appendChild(el)
+                        div.appendChild(image)
+                        this.section.appendChild(div)
                         let hr = document.createElement('hr')
-                        el.appendChild(hr)
-                        this.section.appendChild(el)
+                        div.appendChild(hr)
+                        this.section.appendChild(div)
                     }
                 }
             }
