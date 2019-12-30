@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fetch</title>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Famille Games of thrones</h1>
+    <h1>Games of thrones</h1>
     <section></section>
 
     <script>
@@ -22,7 +23,7 @@
             get() {
                 fetch(this.target).then((response) => {
                     if (response.ok) {
-                        console.log('Requete abouti');
+                        console.log('Requete ok');
                     }
                     response.json().then((data) => {
                         this.addData(data)
@@ -36,8 +37,7 @@
                 for (let i = 0; i < data.length; i++) {
                     let el = document.createElement('div')
                     let nameFamille = document.createElement('h2')
-                    nameFamille.textContent = data[i].nom
-                    nameFamille.style.backgroundColor = 'red'
+                    nameFamille.textContent = "Family " + data[i].nom
                     this.section.appendChild(nameFamille)
                     el.style.display ='none'
                     // toggle JQuery
@@ -59,8 +59,10 @@
                         // Ajout image personnage
                         let image = document.createElement('img')
                         image.src = data[i].gens[j].image
-                        image.style.width = '10vw'
                         el.appendChild(image)
+                        this.section.appendChild(el)
+                        let hr = document.createElement('hr')
+                        el.appendChild(hr)
                         this.section.appendChild(el)
                     }
                 }
