@@ -26,6 +26,8 @@
 [5. 5_Ajax](/5_Ajax)  
 * Fromage JSON (__Done__ Version JS / AJAX)
 * Jquey AJAX (Avancement 2/4)
+* Fetch (__Done__)
+
 
 [6. 6_Promesses](/6_Promesses)  
 * CaVautOuCaVautPas (__Done__)
