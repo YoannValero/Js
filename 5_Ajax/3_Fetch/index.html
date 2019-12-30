@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,150 +8,138 @@
     <title>fetch</title>
 </head>
 <style>
-    table {
-        border: 2px solid #000;
+    .famille {
+        display: none;
+    }
+
+    .famille2 {
+        display: block;
     }
 </style>
+
 <body>
+    <h1>Famille Games of thrones</h1>
     <section></section>
 
     <script>
-    // let section = document.querySelector('section')
-    // let get = async (url) => {
-    //     let response= await fetch(url)
-    //     if (response.ok) {
-    //         let data = await response.json()
-    //         console.log(data)
-    //         for (let i=0; i < data.length; i++) {
-    //             // console.log(data[i].gens)
-    //             for (let j = 0; j < data[i].gens.length; j++) {
-    //                 let name = document.createElement('p')
-    //                 name.textContent = data[i].gens[j].nom
-    //                 section.appendChild(name)
 
-    //                 let descrip = document.createElement('p')
-    //                 descrip.textContent = data[i].gens[j].description
-    //                 section.appendChild(descrip)
-
-    //                 let image = document.createElement('img')
-    //                 image.src = data[i].gens[j].image
-    //                 image.style.width ='10vw'
-    //                 section.appendChild(image)
-                    
-    //                 console.log(data[i].gens[j].nom)
-    //             }
-    //         }
-    //     } else {
-    //         console.error('Erreur du retour serveur' + response.status)
-    //     }
-    // }
-    // get('data/got.json')
-    
-    // class Family {
-    //     constructor(famille) {
-    //         this.famille = famille
-    //         this.perso = new Perso(nom, description, image)
-    //         this.appendFamily()
-    //     }
-    //     appendFamily() {
-    //         let section = document.querySelector('section')
-    //         let table = document.querySelector('table')
-    //         let famille = document.createElement('th')
-    //         famille.textContent = this.famille
-    //         famille.appendChild(th)
-    //     }
-    // }
-    // class Perso extends Family {
-    //     constructor( nom, description, image) {
-    //         super()
-    //         this.nom = nom
-    //         this.description = description 
-    //         this.image = image
-    //         this.appendPerso()
-    //     }
-    //     appendPerso() {
-    //         let perso = document.createElement('td')
-    //         perso.textContent = this.nom
-            
-    //     }
-        
-    // }
-    // 
-
-
-    class Getter{
-            constructor(target){
+        class Got {
+            constructor(target) {
                 this.target = target
-                this.section = document.querySelector("section")
-                this.req()
+                this.section = document.querySelector('section')
+                this.get()
             }
-            req(){
-              
-              fetch(this.target).then( (response) => {
-                if(response.status !== 200){
-                    console.log('Probleme');
-                }
-                response.json().then( (data) => {
-                   this.obj(data)
+            get() {
+                fetch(this.target).then((response) => {
+                    if (response.ok) {
+                        console.log('Requete abouti');
+                    }
+                    response.json().then((data) => {
+                        this.addData(data)
+                    })
+                }).catch((err) => {
+                    console.log('Erreur du retour serveur ' + err);
                 })
-              }).catch( (err) => {
-                  console.log('pb ' + err);
-                  
-              })
-            }     
-            // test(itération en cours, data-id cliquer, div a ciblé)
-            listeFamille(x, data, div){
-                let para = document.createElement("p")
-                para.textContent = data.gens[x].nom
-                para.style.height = "100px"
-                para.style.fontWeight = "bold"
-                let description = document.createElement("p")
-                description.textContent = data.gens[x].description
-                description.style.height = "100px"
-                let image = document.createElement("img")
-                image.src = data.gens[x].image
-                image.style.height = "200px"
-                image.style.width = "200px"
-                image.style.clear ="both"
-                image.style.float = "left"
-                image.style.borderRadius = "50%"
-                div.appendChild(image)
-                div.appendChild(para)
-                div.appendChild(description)
-                
             }
-            obj(data){
-                console.log(data);
-                for(let i=0; i<data.length; i++){
-                    // nom cliquable
-                    let article = document.createElement("article")
-                    let h2 = document.createElement("h2")
-                    h2.textContent = data[i].nom
-                    h2.style.color = "white"
-                    h2.style.backgroundColor = "black"
-                    h2.dataset.id = i
-                    article.appendChild(h2)
-                    this.section.appendChild(article)
-                    let div = document.createElement("div")
-                    div.dataset.toggle = 1
-                    article.addEventListener("click", (e) => {
-                        if(div.dataset.toggle == 1){
-                            for(let x=0; x < data[e.target.dataset.id].gens.length; x++){
-                                this.listeFamille(x, data[e.target.dataset.id], div)
-                            }
-                        article.appendChild(div)
-                        div.dataset.toggle = 0
-                        }else{
-                            div.textContent = ""
-                            article.removeChild(div)
-                            div.dataset.toggle = 1
-                        }
-                    })   
+            addData(data) {
+                // console.log(data)
+                for (let i = 0; i < data.length; i++) {
+                    let el = document.createElement('div')
+                    // console.log(data[i].gens)
+                    el.className = 'famille2'
+                    el.className = 'famille'
+                    // console.log(this.section);
+                    let nameFamille = document.createElement('h2')
+                    nameFamille.textContent = data[i].nom
+                    nameFamille.style.backgroundColor = 'red'
+                    // div.appendChild(nameFamille)
+                    this.section.appendChild(nameFamille)
+
+                    nameFamille.addEventListener('click', () => {
+                        // el.setAttribute('datatogg', '0')
+                        // if (el.getAttribute('datatogg') == 0 ) {
+                        // el.style.display='block'
+                        // el.removeAttribute()
+                        // } 
+
+                            console.log(el)
+                            el.classList.toggle = 'famille2'
+                        
+                    })
+                    // nameFamille.addEventListener('click', () => {
+                    //     el.setAttribute('datatogg', '1')
+                    //     if (el.getAttribute('datatogg') == 1) {
+                    //         el.removeAttribute()
+                    //         el.style.display = 'none'
+                    //     }
+                    // })
+                    for (let j = 0; j < data[i].gens.length; j++) {
+                        let name = document.createElement('h3')
+                        name.textContent = data[i].gens[j].nom
+                        el.appendChild(name)
+                        this.section.appendChild(el)
+                        // name.style.backgroundColor = '#222'
+
+                        let descrip = document.createElement('p')
+                        descrip.textContent = data[i].gens[j].description
+                        el.appendChild(descrip)
+                        this.section.appendChild(el)
+
+                        let image = document.createElement('img')
+                        image.src = data[i].gens[j].image
+                        image.style.width = '10vw'
+                        el.appendChild(image)
+                        this.section.appendChild(el)
+
+                        // console.log(data[i].gens[j].nom)
+                    }
                 }
-             
-            }       
+            }
         }
-        let got = new Getter("data/got.json") 
+
+        let requete = new Got('data/got.json')
+
+        // let section = document.querySelector('section')
+        // let get = async (url) => {
+        //     let response = await fetch(url)
+        //     if (response.ok) {
+        //         let data = await response.json()
+        //         console.log(data)
+        //         for (let i = 0; i < data.length; i++) {
+        //             // console.log(data[i].gens)
+        //             let nameFamille = document.createElement('h2')
+        //             nameFamille.textContent = data[i].nom
+        //             section.appendChild(nameFamille)
+
+        //             for (let j = 0; j < data[i].gens.length; j++) {
+        //                 let name = document.createElement('h3')
+        //                 name.textContent = data[i].gens[j].nom
+        //                 section.appendChild(name)
+        //                 name.style.backgroundColor = '#222'
+        //                 name.style.color = 'white'
+
+
+        //                 let descrip = document.createElement('p')
+        //                 descrip.textContent = data[i].gens[j].description
+        //                 section.appendChild(descrip)
+
+        //                 let image = document.createElement('img')
+        //                 image.src = data[i].gens[j].image
+        //                 image.style.width = '10vw'
+        //                 section.appendChild(image)
+
+        //                 // console.log(data[i].gens[j].nom)
+        //             }
+        //         }
+        //     } else {
+        //         console.error('Erreur du retour serveur' + response.status)
+        //     }
+        // }
+        // get('data/got.json')
+
+
+
     </script>
 </body>
+
 </html>
