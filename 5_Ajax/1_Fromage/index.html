@@ -79,7 +79,7 @@
             // console.log(request.status)
             if (request.readyState === 4) {
                 let response = JSON.parse(this.response) // Si non stockées dans une variable this.response.chapitre est undefined
-
+                console.log(response)
                 for (let i = 0; i < response.length; i++) {
                     let article = new Fromages(response[i].nom, response[i].type, response[i].pays, response[i].classement, section) // (response[i].type = arguments du contructeur de la class Fromages )
                     // console.log(article.classementElt)
