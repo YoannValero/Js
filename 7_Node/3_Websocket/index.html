@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Le super Chat temps réel !</h1>
+
+    <form action="/" method="post" id="formulaire_chat">
+        <input type="text" name="message" id="m" placeholder="Votre message..." size="50" autofocus />
+        <input type="submit" id="envoi_message" value="Envoyer" />
+    </form>
+
+    <section id="zone_chat">
+        
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    let socket = io();
+    $(function() {
+        $('#formulaire_chat').submit( function ( e ) {       
+            e.preventDefault (); // empêche le rechargement de la page      
+            socket.emit( 'chat message', $('#m').val());
+            $ ('#m').val(' ');
+            return false ;     
+        });
+        socket.on('chat message', function(msg){
+            $('#zone_chat').prepend($('<p>').text(msg));
+          });
+    }) 
+
+
+    
+
+    </script>
+    
+
+
+
+
+       
+
+
+
+
+    </script>
+</body>
+</html>
