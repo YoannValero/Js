@@ -26,9 +26,8 @@ APIs.forEach(api => {
 
 app.get(/.*/, function(req,res) {
     res.writeHead(404)
-    res.end("erreur 404: URL " + req.url + " inconnue" )
+    res.end("La Fameuse erreur 404 des familles : URL " + req.url + " inconnue" )
 })
-
 
 
 app.listen(3000, () => {
