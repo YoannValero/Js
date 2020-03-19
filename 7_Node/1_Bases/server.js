@@ -10,11 +10,8 @@ const APIs = [
     {
         route: '/contact',
         files:'/contact.html'
-    },
-    {
-        route: '/mythique',
-        files:'/mythique.html'
-    },
+    }
+    
 ]
 app.use(express.static('mythique_files'))
 
@@ -26,7 +23,7 @@ APIs.forEach(api => {
 
 app.get(/.*/, function(req,res) {
     res.writeHead(404)
-    res.end("La Fameuse erreur 404 des familles : URL " + req.url + " inconnue" )
+    res.end("<h1>La Fameuse erreur 404 des familles :</h1> URL <pre><h2>" + req.url + "</h2></pre> inconnue" )
 })
 
 
